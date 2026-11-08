@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+{% block content %}
+<section class="hero">
+  <div><p class="eyebrow">WELCOME TO SHopease</p><h1>Find something<br><span>you’ll love.</span></h1><p class="hero-copy">Browse our collection of everyday essentials and favorites.</p></div>
+  <div class="hero-mark">S<span>.</span></div>
+</section>
+<section class="shop-toolbar">
+  <div><h2>Featured products</h2><p class="muted">{{ products|length }} product(s) available</p></div>
+  <form class="filters" method="get">
+    <input type="search" name="q" placeholder="Search products..." value="{{ search }}">
+    <select name="category"><option value="">All categories</option>{% for item in categories %}<option value="{{ item }}" {% if selected_category == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select>
+    <button class="button button-dark" type="submit">Filter</button>
+  </form>
+</section>
+<div class="product-grid">
+{% for product in products %}
+  <article class="product-card">
+    <a class="product-image" href="{% url 'product_detail' product.slug %}">
+      {% if product.image_url %}<img src="{{ product.image_url }}" alt="{{ product.name }}" loading="lazy">{% else %}<div class="image-placeholder"><span>{{ product.name|slice:":1" }}</span></div>{% endif %}
+      {% if product.category %}<span class="category-chip">{{ product.category }}</span>{% endif %}
+    </a>
+    <div class="product-info"><h3><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h3><p class="product-description">{{ product.description|truncatewords:13 }}</p>
+      <div class="product-bottom"><strong>₹{{ product.price }}</strong><a class="button button-small" href="{% url 'add_to_cart' product.pk %}">Add to cart +</a></div>
+    </div>
+  </article>
+{% empty %}
+  <div class="empty-state"><h3>No products found</h3><p>Add products through the Django Admin panel or adjust your search.</p><a href="{% url 'home' %}" class="button">Clear filters</a></div>
+{% endfor %}
+</div>
+{% endblock %}

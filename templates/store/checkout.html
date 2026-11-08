@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+<div class="form-page"><p class="eyebrow">ALMOST THERE</p><h1>Delivery details</h1><p class="muted">Demo checkout only. No payment is collected.</p>
+<form class="form-card" method="post">{% csrf_token %}
+  {% for field in form %}<div class="form-field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.errors %}<div class="field-error">{{ field.errors }}</div>{% endif %}</div>{% endfor %}
+  <button class="button button-dark button-wide" type="submit">Place order</button>
+</form></div>
+{% endblock %}

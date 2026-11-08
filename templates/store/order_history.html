@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}My Orders{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">YOUR ACCOUNT</p><h1>My orders</h1></div>
+{% for order in orders %}
+  <article class="order-card"><div class="order-header"><div><h3>Order #{{ order.pk }}</h3><p class="muted">{{ order.created_at|date:"M d, Y · h:i A" }}</p></div><span class="status">{{ order.get_status_display }}</span></div>
+  {% for item in order.items.all %}<div class="order-line"><span>{{ item.product_name }} × {{ item.quantity }}</span><span>₹{{ item.unit_price }}</span></div>{% endfor %}
+  <div class="order-total"><span>Order total</span><strong>₹{{ order.total }}</strong></div></article>
+{% empty %}<div class="empty-state"><h2>No orders yet</h2><p>Your placed orders will appear here.</p><a class="button button-dark" href="{% url 'home' %}">Start shopping</a></div>{% endfor %}
+{% endblock %}

@@ -1,136 +1,246 @@
 # ShopEase — Simple E-commerce Store
 
-A full-stack starter project for an internship task. ShopEase is a Django-based shopping website with product browsing, product detail pages, a session-based cart, account registration/login, checkout/order creation, and order history.
+A full-stack Django-based e-commerce website developed as an internship project. ShopEase allows users to browse products, view product details, add products to a shopping cart, register/login, checkout, and view their order history.
 
 ## Features
 
-- Product catalog with search and category filter
-- Product detail page
-- Shopping cart: add, update quantity, remove items
+- Product catalog with search and category filtering
+- Product detail pages
+- Shopping cart with add, update quantity, and remove functionality
 - User registration and login/logout
 - Authenticated checkout with delivery details
 - Order history for logged-in users
-- Stock validation and stock decrement at checkout
-- Django Admin for product and order management
+- Stock validation and stock decrement during checkout
+- Django Admin panel for product and order management
 - Responsive HTML/CSS storefront
 - SQLite database for local development
 
-> **Note:** This project is for learning and demonstration. Checkout creates an order but does not accept or process payments.
+> **Note:** This project is for learning and demonstration purposes. Checkout creates an order but does not accept or process payments.
 
-## Tech stack
+## Tech Stack
 
-- Python
+- Python 3.11+
 - Django
 - SQLite
-- HTML5, CSS3
-- Django templates and session framework
+- HTML5
+- CSS3
+- Django Templates
+- Django Session Framework
 
-## Run locally (Windows / VS Code)
-
-### 1. Requirements
-Install Python 3.11 or newer and VS Code.
-
-### 2. Open this folder in VS Code
-Open the `Simple_Ecommerce_Store_GitHub` folder. Use **Terminal → New Terminal**.
-
-### 3. Create and activate virtual environment
-
-```powershell
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-### 4. Install packages
-
-```powershell
-pip install -r requirements.txt
-```
-
-### 5. Create database tables
-
-```powershell
-python manage.py makemigrations store
-python manage.py migrate
-```
-
-### 6. Create administrator account
-
-```powershell
-python manage.py createsuperuser
-```
-
-### 7. Start development server
-
-```powershell
-python manage.py runserver
-```
-
-Visit:
-- Store: http://127.0.0.1:8000/
-- Admin: http://127.0.0.1:8000/admin/
-
-## Add products
-
-1. Log in to Django Admin.
-2. Open **Products → Add Product**.
-3. Add name, slug (unique URL name), description, price, stock, category, and optional image URL.
-4. Set **Is active** to enabled and save.
-
-Example demo catalog:
-- Everyday Backpack — ₹1299 — stock 12 — category Accessories
-- Wireless Headphones — ₹1999 — stock 8 — category Electronics
-- Ceramic Coffee Mug — ₹299 — stock 20 — category Home
-
-## GitHub upload
-
-From this project folder, in the terminal:
-
-```powershell
-git init
-git add .
-git commit -m "Initial commit: ShopEase Django e-commerce store"
-```
-
-Create an empty repository on GitHub, then follow the repository page's instructions to connect the remote and push. Common commands:
-
-```powershell
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-git push -u origin main
-```
-
-Replace the URL with your actual repository URL.
-
-## Project structure
+## Project Structure
 
 ```text
 Simple_Ecommerce_Store_GitHub/
+│
 ├── config/
 │   ├── settings.py
 │   ├── urls.py
 │   ├── asgi.py
 │   └── wsgi.py
+│
 ├── store/
+│   ├── migrations/
 │   ├── admin.py
 │   ├── apps.py
 │   ├── forms.py
 │   ├── models.py
 │   ├── urls.py
 │   └── views.py
-├── static/css/style.css
+│
+├── static/
+│   └── css/
+│       └── style.css
+│
 ├── templates/
 │   ├── base.html
 │   ├── store/
 │   └── registration/
+│
 ├── manage.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
-## Security notes before deployment
+## Run Locally (Windows / VS Code)
+
+Follow these steps to run the ShopEase E-commerce Store on your computer.
+
+### 1. Requirements
+
+Install the following:
+
+- Python 3.11 or newer
+- Visual Studio Code
+- Git
+
+### 2. Clone the Repository
+
+Open the VS Code terminal and run:
+
+```bash
+git clone https://github.com/farhan-088/CodeAlpha_Ecommerce-Store.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd CodeAlpha_Ecommerce-Store
+```
+
+### 3. Create a Virtual Environment
+
+```powershell
+python -m venv venv
+```
+
+### 4. Activate the Virtual Environment
+
+For Windows PowerShell:
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+If PowerShell blocks activation, run:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\venv\Scripts\Activate.ps1
+```
+
+### 5. Install Dependencies
+
+```powershell
+python -m pip install --upgrade pip
+```
+
+```powershell
+pip install -r requirements.txt
+```
+
+### 6. Create Database Tables
+
+Run the following command:
+
+```powershell
+python manage.py migrate
+```
+
+This command creates the required database tables using the migration files included in the repository.
+
+### 7. Create an Administrator Account (Optional)
+
+```powershell
+python manage.py createsuperuser
+```
+
+Enter your username, email address, and password when prompted.
+
+### 8. Start the Development Server
+
+```powershell
+python manage.py runserver
+```
+
+### 9. Open the Website
+
+Store Website:
+
+http://127.0.0.1:8000/
+
+Django Admin Panel:
+
+http://127.0.0.1:8000/admin/
+
+Keep the terminal running while using the website.
+
+To stop the server, press `Ctrl + C` in the terminal.
+
+## Add Products
+
+To add products to the store:
+
+1. Open the Django Admin Panel.
+2. Log in using your administrator account.
+3. Open **Products**.
+4. Click **Add Product**.
+5. Enter product details.
+6. Set the product as active.
+7. Save the product.
+
+Example Demo Catalog:
+
+| Product | Price | Stock | Category |
+|---|---:|---:|---|
+| Everyday Backpack | ₹1299 | 12 | Accessories |
+| Wireless Headphones | ₹1999 | 8 | Electronics |
+| Ceramic Coffee Mug | ₹299 | 20 | Home |
+
+## Database
+
+ShopEase uses SQLite for local development.
+
+The database tables are created by running:
+
+```powershell
+python manage.py migrate
+```
+
+If you encounter an error such as:
+
+```text
+OperationalError: no such table: store_product
+```
+
+Run:
+
+```powershell
+python manage.py migrate
+```
+
+Then restart the development server.
+
+## GitHub Repository
+
+GitHub Repository:
+
+https://github.com/farhan-088/CodeAlpha_Ecommerce-Store
+
+To upload any new changes:
+
+```powershell
+git add .
+git commit -m "Update ShopEase project"
+git push
+```
+
+## Security Notes Before Deployment
+
+Before deploying the project to a production environment:
 
 - Set `DJANGO_SECRET_KEY` to a secure secret value.
 - Set `DJANGO_DEBUG=False`.
-- Set `DJANGO_ALLOWED_HOSTS` to your deployment host.
-- Use a production database and HTTPS for deployment.
-- Do not commit real credentials, `.env` files, or the local database.
+- Configure `DJANGO_ALLOWED_HOSTS` for your deployment domain.
+- Use a production database.
+- Enable HTTPS.
+- Do not commit real credentials or `.env` files.
+- Do not expose sensitive user information.
+
+## Future Enhancements
+
+- Online payment gateway integration
+- Product reviews and ratings
+- Wishlist functionality
+- Order tracking
+- Product image upload
+- Email notifications
+- Deployment to a cloud hosting platform
+
+## Author
+
+Developed as an internship project.
+
+## License
+
+This project is intended for educational and demonstration purposes.
